@@ -93,9 +93,9 @@ Since the disk contains blocks that are directories and blocks that are file dat
 
 The root directory entry will be a struct defined as below (the actual one we provide in the code has additional attributes and padding to force the structure to be 512 bytes):
 
-struct cs1550_root_directory
+    struct cs1550_root_directory
 
-{
+    {
 
        int nDirectories;   //How many subdirectories are in the root
 
@@ -111,7 +111,7 @@ struct cs1550_root_directory
 
        } directories[MAX_DIRS_IN_ROOT]; //There is an array of these
 
-} ;
+     } ;
 
  
 
@@ -124,9 +124,9 @@ Directories will be stored in our .disk file as a single block-sized cs1550_dire
 
 The structure is defined below (again the actual one we provide in the code has additional attributes and padding to force the structure to be 512 bytes):
 
-struct cs1550_directory_entry
+    struct cs1550_directory_entry
 
-{
+     {
 
        int nFiles;                       //How many files are in this directory.
 
@@ -148,7 +148,7 @@ struct cs1550_directory_entry
 
        } files[MAX_FILES_IN_DIR];              //There is an array of these
 
-};
+    };
 
  
 
@@ -159,9 +159,9 @@ Each file entry in the directory has a filename in 8.3 (name.extension) format. 
 ## Files
 Files will be stored alongside the directories in.disk. Data blocks are 512-byte structs of the format:
 
-struct cs1550_disk_block
+     struct cs1550_disk_block
 
-{
+    {
 
        //The next disk block, if needed. This is the next pointer in the linked
 
@@ -177,7 +177,7 @@ struct cs1550_disk_block
 
        char data[MAX_DATA_IN_BLOCK];
 
-};
+    };
 
  
 
@@ -195,7 +195,7 @@ The syscalls need to return success or failure.  Success is indicated by 0 and a
  
 
 
-cs1550_getattr
+### cs1550_getattr
 
 Description:
 
@@ -213,7 +213,7 @@ Return values:
 
  
 
-cs1550_mkdir
+### cs1550_mkdir
 
 Description:
 
@@ -236,7 +236,7 @@ Return values:
  
 
 
-cs1550_readdir
+### cs1550_readdir
 
 Description:
 
@@ -270,7 +270,7 @@ Return values:
 
  
 
-cs1550_rmdir
+### cs1550_rmdir
 
 This function should not be modified.
 
@@ -280,7 +280,7 @@ Above this line are the directory calls required for the first due date
 
  
 
-cs1550_mknod
+### cs1550_mknod
 
 Description:
 
@@ -302,7 +302,7 @@ Return values:
 
  
 
-cs1550_write
+### cs1550_write
 
 Description:
 
@@ -320,7 +320,7 @@ size on success
 
  
 
-cs1550_read
+### cs1550_read
 
 Description:
 
@@ -338,19 +338,19 @@ size read on success
 
  
 
-cs1550_unlink
+### cs1550_unlink
 
 This function should not be modified. Files thus cannot be deleted. However, we can still see the linked allocation of dis-contiguous blocks via appends.
 
-cs1550_truncate
+### cs1550_truncate
 
 This function should not be modified.
 
-cs1550_open
+### cs1550_open
 
 This function should not be modified, as you get the full path every time any of the other functions are called.
 
-cs1550_flush
+### cs1550_flush
 
 This function should not be modified.
 
